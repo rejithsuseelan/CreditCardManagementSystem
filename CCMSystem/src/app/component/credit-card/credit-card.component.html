@@ -1,0 +1,28 @@
+<section class="dash-row">
+  <mat-card style="flex: 2">
+    <ng-container *ngFor="let card of cardsService.lstCreditCard">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="mt-20">
+            <img width="178" alt="{{card.cardHeader}}" src="{{card.imgSRC}}">
+          </div>
+          <div class="applyButton">
+            <button mat-raised-button class="btnblue" (click)="selectCard(card)">Apply</button>
+          </div>
+        </div>
+        <div class="col-md-10">
+          <ul>
+            <li>
+              <h3>{{card.cardHeader}}</h3>
+            </li>
+            <li *ngFor="let offer of card.BasicOffers">
+              <span class="img"></span>
+              <span>{{offer}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-container>
+  </mat-card>
+
+</section>

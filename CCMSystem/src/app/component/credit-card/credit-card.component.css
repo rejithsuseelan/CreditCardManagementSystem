@@ -1,0 +1,54 @@
+.mat-tab-label {
+  height: 120px !important;
+}
+
+ul {
+  padding-inline-start: 10px;
+}
+
+ul li {
+  list-style-type: none;
+  margin: 0px;
+  padding-left: 5px;
+  line-height: 24px;
+  font-size: 14px;
+  padding-bottom: 15px;
+}
+
+ul li span {
+  display: inline-block;
+  vertical-align: top;
+  width: 90%;
+  padding-left: 5px;
+}
+
+ul li span.img {
+  width: 20px;
+  height: 34px;
+  background: url(/src/assets/Images/tick.png) no-repeat;
+  display: inline-block;
+  padding-top: 0px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  vertical-align: top;
+  background-position: 0px 17px;
+}
+
+.img {
+  margin: -11px -3px auto;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.applyButton {
+  margin-top: 40px;
+  margin-right: -10px;
+}
+
+.btnblue {
+  color: #fff;
+  background: #00bdf2;
+  width: 100%;
+}

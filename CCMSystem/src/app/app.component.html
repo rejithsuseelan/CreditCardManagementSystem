@@ -1,0 +1,40 @@
+<div class="example-container">
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm *ngIf="creditCardsService.isLoggedIn">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>
+      {{title}}
+    </span>
+    <span class="fill-remaining-space"></span>
+    <button mat-button routerLink="dashboard" *ngIf="!creditCardsService.isLoggedIn">Dashboard</button>
+    <button mat-button routerLink="application-status" *ngIf="!creditCardsService.isLoggedIn">Check Application Status</button>
+    <button mat-button routerLink="login" *ngIf="!creditCardsService.isLoggedIn">Login</button>
+    <button mat-button *ngIf="creditCardsService.isLoggedIn" (click)="logout()">Logout</button>
+    
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="over" class="mat-sidenav">
+      <mat-nav-list>
+        <a mat-list-item class="menu-list-item" routerLink="/dashboard" (click)="sidenav.toggle()">
+          <mat-icon class="routeIcon"></mat-icon>
+          Dashboard
+        </a>
+        <a mat-list-item class="menu-list-item" routerLink="/applied-card" (click)="sidenav.toggle()">
+          <mat-icon class="routeIcon"></mat-icon>
+          Applied Cards
+        </a>
+        <a mat-list-item class="menu-list-item" routerLink="/application-status" (click)="sidenav.toggle()">
+          <mat-icon class="routeIcon"></mat-icon>
+          Application Status
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="centerLayout">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

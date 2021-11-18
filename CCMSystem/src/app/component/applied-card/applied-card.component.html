@@ -1,0 +1,118 @@
+<section class="dash-row">
+  <mat-card class="margin-1em" style="flex: 2">
+    <table mat-table [dataSource]="creditCardList" >
+
+      <ng-container matColumnDef="applicationId">
+        <th mat-header-cell *matHeaderCellDef> <strong>Application Id</strong></th>
+        <td mat-cell *matCellDef="let element"> {{element.applicationId}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef> <strong>Name</strong> </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstName}} {{element.lastName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fatherName">
+        <th mat-header-cell *matHeaderCellDef> <strong>Father Name</strong> </th>
+        <td mat-cell *matCellDef="let element"> {{element.fatherName}} {{element.fatherLastName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cardName">
+        <th mat-header-cell *matHeaderCellDef> <strong>Card </strong></th>
+        <td mat-cell *matCellDef="let element"> {{element.cardName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="pancard">
+        <th mat-header-cell *matHeaderCellDef> <strong>Pancard</strong> </th>
+        <td mat-cell *matCellDef="let element"> {{element.pancard}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="annualIncome">
+        <th mat-header-cell *matHeaderCellDef> <strong>Annual Income</strong> </th>
+        <td mat-cell *matCellDef="let element"> {{element.annualIncome}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="trackingNumber">
+        <th mat-header-cell *matHeaderCellDef> <strong>Tracking Number </strong></th>
+        <td mat-cell *matCellDef="let element"> {{element.trackingNumber}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="cardStatus">
+        <th mat-header-cell *matHeaderCellDef> <strong> Status </strong> </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.cardStatus == 12 ? "Applied" :
+          element.cardStatus == 13 ? "Approved" :
+          element.cardStatus == 14 ? "Rejected" :
+          element.cardStatus == 15 ? "Dispacted" :
+          element.cardStatus == 16 ? "In Transist" : "Deliveried"
+          }}
+
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Action of menu"
+            *ngIf="(element.cardStatus != 17 && element.cardStatus != 14 )">
+            <mat-icon>more_vert {{element.cardStatus}}</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngIf="element.cardStatus == 12"
+              (click)="UpdateApplicationStatus(element.applicationId,13)">
+              <span>Approve</span>
+            </button>
+            <button mat-menu-item *ngIf="element.cardStatus == 12"
+              (click)="UpdateApplicationStatus(element.applicationId,14)">
+              <span>Reject</span>
+            </button>
+            <button mat-menu-item *ngIf="element.cardStatus == 13" (click)="callAPI(element.applicationId, 15 )">
+              <span>Update Shipment</span>
+            </button>
+            <button mat-menu-item *ngIf="element.cardStatus == 15"
+              (click)="consignmentUpdate(element.applicationId, 16 )">
+              <span> Update to In-Transist Status</span>
+            </button>
+            <button mat-menu-item *ngIf="element.cardStatus == 16"
+              (click)="consignmentUpdate(element.applicationId, 17)">
+              <span> Update to Delivery Status </span>
+            </button>
+          </mat-menu>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card>
+</section>
+
+<!-- Modal-->
+<ng-template #courierDialog>
+
+  <h3 mat-dialog-title>Enter Courier Details</h3>
+
+  <div mat-dialog-content>
+
+    <div class="col-md-12">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Courier Name</mat-label>
+        <input matInput [(ngModel)]="CourierName">
+      </mat-form-field>
+    </div>
+    <div class="col-md-12">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Tracking Number</mat-label>
+        <input matInput [(ngModel)]="TrackingNumber">
+      </mat-form-field>
+    </div>
+
+
+  </div>
+  <div mat-dialog-actions class="row" style="float: right;">
+    <button mat-button matDialogClose="no" color="warn">Cancel</button>
+    <button mat-button matDialogClose="yes" color="primary" [disabled]="!(TrackingNumber && CourierName)"
+      [mat-dialog-close]>Update</button>
+  </div>
+
+</ng-template>

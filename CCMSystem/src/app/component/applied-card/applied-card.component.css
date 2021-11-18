@@ -1,0 +1,38 @@
+table {
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.mat-dialog-container {
+  padding-top: 0 !important;
+}
+
+dialog-overview-example-dialog.ng-star-inserted > div {
+  margin-right: -24px;
+  margin-left: -24px;
+}
+
+.mat-dialog-actions {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+.mat-dialog-title {
+  margin-top: 15px !important;
+  margin-left: 15px !important;
+}
+
+.close-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* transform: translate(50%, -50%); */
+}
+
+.mat-header-cell {
+  color: #000000;
+  font-size: 13px;
+}
